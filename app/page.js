@@ -1,103 +1,114 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { getServerSession } from 'next-auth';
+import authOptions from '@/libs/auth';
 
-export default function Home() {
+async function getApps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts`);
+  const data = await res.json();
+  return data.data || [];
+}
+
+export default async function Home() {
+  const apps = await getApps();
+  const session = await getServerSession(authOptions);
+  const isAdmin = session?.user?.role === 'admin';
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen">
+      {/* Admin Header Bar */}
+      {isAdmin && (
+        <div className="bg-gray-800 text-white py-2 px-4 flex justify-end">
+          <div className="flex items-center space-x-4">
+            <span className="text-sm">Welcome, Admin</span>
+            <Link 
+              href="/admin/dashboard"
+              className="px-3 py-1 bg-blue-600 rounded hover:bg-blue-700 text-sm"
+            >
+              Dashboard
+            </Link>
+            <Link 
+              href="/api/auth/signout"
+              className="px-3 py-1 bg-red-600 rounded hover:bg-red-700 text-sm"
+            >
+              Logout
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      )}
+
+      {/* Banner Section */}
+      <div className="bg-blue-600 text-white py-20 relative">
+        {/* Admin Login Button (only shows when not logged in) */}
+        {!isAdmin && (
+          <div className="absolute top-4 right-4">
+            <Link 
+              href="/admin/login"
+              className="px-4 py-2 bg-white text-blue-600 rounded-lg font-medium hover:bg-gray-100"
+            >
+              Admin Login
+            </Link>
+          </div>
+        )}
+
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl font-bold mb-4">CodeOrbitStudio</h1>
+          <p className="text-xl mb-8">Professional App Development Team from Bangladesh</p>
+          <button className="px-6 py-3 bg-white text-blue-600 rounded-lg font-medium hover:bg-gray-100">
+            Explore Our Apps
+          </button>
+        </div>
+      </div>
+
+      {/* Apps Section */}
+      <div className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold text-center mb-12">Our Applications</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {apps.map((app) => (
+            <div key={app._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+              <img 
+                src={app.image} 
+                alt={app.name} 
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-2">{app.name}</h3>
+                <p className="text-gray-600 mb-4">{app.shortDescription}</p>
+                <div className="flex justify-between">
+                  <Link 
+                    href={`/apps/${app._id}`} 
+                    className="text-blue-600 hover:text-blue-800 font-medium"
+                  >
+                    View Details
+                  </Link>
+                  <div className="flex space-x-2">
+                    {app.playStore_url && (
+                      <a 
+                        href={app.playStore_url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-green-600 hover:text-green-800"
+                      >
+                        Play Store
+                      </a>
+                    )}
+                    {app.appStore_url && (
+                      <a 
+                        href={app.appStore_url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        App Store
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
