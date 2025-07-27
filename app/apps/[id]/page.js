@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 async function getApp(id) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts/${id}`);
   const data = await res.json();
@@ -29,7 +31,7 @@ export default async function AppDetails({ params }) {
             <h1 className="text-3xl font-bold mb-4">{app.name}</h1>
             <p className="text-lg text-gray-600 mb-6">{app.shortDescription}</p>
             
-            <div className="flex space-x-4 mb-8">
+            <div className="flex flex-wrap gap-4 mb-8">
               {app.playStore_url && (
                 <a 
                   href={app.playStore_url}
@@ -50,6 +52,12 @@ export default async function AppDetails({ params }) {
                   <span>Download on App Store</span>
                 </a>
               )}
+              <Link 
+                href={`/privacy/${params.id}`}
+                className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 flex items-center"
+              >
+                <span>Privacy Policy</span>
+              </Link>
             </div>
 
             <div className="mb-8">
