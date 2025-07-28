@@ -9,7 +9,11 @@ import Placeholder from '@tiptap/extension-placeholder'
 const extenstions =  [
   StarterKit,
   Link.configure({ openOnClick: false }),
-  HardBreak,
+  HardBreak.configure({
+      HTMLAttributes: {
+        class: 'break-words whitespace-pre-line',
+      },
+    }),,
   TextAlign.configure({ types: ['heading', 'paragraph'] }),
   Color,
   Placeholder.configure({

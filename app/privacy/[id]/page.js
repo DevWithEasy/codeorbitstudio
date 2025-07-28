@@ -36,22 +36,22 @@ export default async function PrivacyPolicy({ params }) {
       <div className="max-w-6xl mx-auto px-4 py-12 -mt-10">
         <div className="rounded-xl shadow-lg overflow-hidden">
           <div className="pt-10 bg-gray-100 mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-2">{app.name}</h1>
-            <p className="text-xl opacity-90">Privacy Policy</p>
+            <h1 className="text-4xl text-teal-600 font-bold mb-2">{app.name}</h1>
+            <p className="text-xl text-gray-500">Privacy Policy</p>
           </div>
           {/* App Image */}
           <div className="bg-gray-100 flex items-center justify-center p-8">
             <img
               src={app.image}
               alt={app.name}
-              className="max-h-64 object-contain"
+              className="max-h-60 object-contain"
             />
           </div>
 
           {/* Policy Content */}
-          <div className="p-8">
+          <div className="p-8 bg-white">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-              <h2 className="text-2xl font-bold text-gray-800">
+              <h2 className="text-2xl font-bold text-teal-600">
                 Privacy Policy - {app.name} App
               </h2>
               <Link
