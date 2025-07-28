@@ -3,7 +3,11 @@ import { getServerSession } from 'next-auth';
 import authOptions from '@/libs/auth';
 
 async function getApps() {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+  const isProduction = process.env.NODE_ENV === 'production';
+  const baseUrl = isProduction 
+    ? 'https://your-production-url.vercel.app'
+    : 'http://localhost:3000';
+
   const res = await fetch(`${baseUrl}/api/posts`);
   const data = await res.json();
   return data.data || [];
