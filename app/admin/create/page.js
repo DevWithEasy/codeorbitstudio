@@ -152,7 +152,7 @@ export default function CreateApp() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                   placeholder="Enter app name"
                   required
                 />
@@ -164,7 +164,7 @@ export default function CreateApp() {
                   name="shortDescription"
                   value={formData.shortDescription}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                   rows="3"
                   placeholder="A brief description of your app"
                   required
@@ -231,7 +231,7 @@ export default function CreateApp() {
                     name="playStore_url"
                     value={formData.playStore_url}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                     placeholder="https://play.google.com/store/apps/..."
                     required
                   />
@@ -244,7 +244,7 @@ export default function CreateApp() {
                     name="appStore_url"
                     value={formData.appStore_url}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                     placeholder="https://apps.apple.com/app/..."
                     required
                   />
@@ -256,7 +256,7 @@ export default function CreateApp() {
               <button
                 type="submit"
                 disabled={loading}
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-400 transition-colors duration-200 flex items-center gap-2"
+                className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 disabled:bg-teal-400 transition-colors duration-200 flex items-center gap-2"
               >
                 {loading ? (
                   <>

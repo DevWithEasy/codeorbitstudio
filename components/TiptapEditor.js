@@ -5,13 +5,13 @@ import { useState } from 'react';
 import MenuBar from './MenuBar';
 import extenstions from './extension';
 
-export default function TiptapEditor() {
-  const [content, setContent] = useState('<p>Write here...</p>');
+export default function TiptapEditor({content,onChange}) {
+  // const [content, setContent] = useState('<p>Write here...</p>');
 
   const editor = useEditor({
     extensions: extenstions,
     content: content,
-    onUpdate: ({ editor }) => setContent(editor.getHTML()),
+    onUpdate: ({ editor }) => onChange(editor.getHTML()),
     editorProps: {
       attributes: {
         class: 'h-full flex-1 overflow-y-auto p-2 font-bangla focus:outline-none',

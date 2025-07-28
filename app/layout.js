@@ -1,6 +1,12 @@
-import { GeistSans, GeistMono } from 'next/font/google';
+import { Hind_Siliguri } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
+
+const hindSiliguri = Hind_Siliguri({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'CodeOrbitStudio App Development Team Bangladesh',
@@ -9,7 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={``}>
+    <html lang="en" className={hindSiliguri.className}>
       <body className="font-sans">
         <Providers>
           {children}

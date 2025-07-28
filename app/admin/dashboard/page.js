@@ -108,7 +108,7 @@ export default function Dashboard() {
             </div>
             <Link
               href="/admin/create"
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 flex items-center justify-center gap-2"
+              className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200 flex items-center justify-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
@@ -198,7 +198,7 @@ export default function Dashboard() {
                           <Link
                             href={`/apps/${app._id}`}
                             target="_blank"
-                            className="text-green-600 hover:text-green-900 transition-colors duration-200"
+                            className="text-teal-600 hover:text-teal-900 transition-colors duration-200"
                             title="View live"
                           >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

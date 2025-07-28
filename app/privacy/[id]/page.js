@@ -21,7 +21,7 @@ export default async function PrivacyPolicy({ params }) {
           </p>
           <Link
             href="/"
-            className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+            className="inline-block px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200"
           >
             Browse Our Apps
           </Link>
@@ -52,7 +52,7 @@ export default async function PrivacyPolicy({ params }) {
           <div className="p-8">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
               <h2 className="text-2xl font-bold text-gray-800">
-                Users Privacy Policy of {app.name} App
+                Privacy Policy - {app.name} App
               </h2>
               <Link
                 href={`/apps/${params.id}`}
@@ -90,7 +90,7 @@ export default async function PrivacyPolicy({ params }) {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           <Link
             href="/"
-            className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-200"
+            className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200"
           >
             <svg
               className="w-5 h-5 mr-2"
@@ -110,7 +110,7 @@ export default async function PrivacyPolicy({ params }) {
 
           <Link
             href={`/apps/${params.id}`}
-            className="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-200"
+            className="inline-flex items-center text-teal-600 hover:text-teal-800 transition-colors duration-200"
           >
             <svg
               className="w-5 h-5 mr-2"

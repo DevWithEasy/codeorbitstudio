@@ -148,7 +148,7 @@ export default function EditApp({ params }) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-10 h-10 border-4 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
           <span className="text-gray-700">Loading app data...</span>
         </div>
       </div>
@@ -199,7 +199,7 @@ export default function EditApp({ params }) {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                   required
                 />
               </div>
@@ -210,7 +210,7 @@ export default function EditApp({ params }) {
                   name="shortDescription"
                   value={formData.shortDescription}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                   rows="3"
                   required
                 />
@@ -286,7 +286,7 @@ export default function EditApp({ params }) {
                     name="playStore_url"
                     value={formData.playStore_url}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                     required
                   />
                 </div>
@@ -298,7 +298,7 @@ export default function EditApp({ params }) {
                     name="appStore_url"
                     value={formData.appStore_url}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
                     required
                   />
                 </div>
@@ -309,7 +309,7 @@ export default function EditApp({ params }) {
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-400 transition-colors duration-200 flex items-center gap-2"
+                className="px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 disabled:bg-teal-400 transition-colors duration-200 flex items-center gap-2"
               >
                 {submitting ? (
                   <>
