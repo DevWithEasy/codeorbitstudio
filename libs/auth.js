@@ -1,38 +1,42 @@
-import User from '@/model/User';
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-import bcrypt from 'bcryptjs';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import clientPromise from './mongodb';
-import dbConnect from './mongoose';
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import bcrypt from "bcryptjs";
+import CredentialsProvider from "next-auth/providers/credentials";
+import clientPromise from "./mongodb";
 
 const authOptions = {
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     CredentialsProvider({
-      name: 'Credentials',
+      name: "Credentials",
       credentials: {
         email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        await dbConnect();
-        
-        const user = await User.findOne({ email: credentials.email });
+        const client = await clientPromise;
+        const db = client.db();
+
+        const user = await db
+          .collection("users")
+          .findOne({ email: credentials.email });
         if (!user) {
-          throw new Error('No user found with this email');
+          throw new Error("No user found with this email");
         }
 
-        const isValid = await bcrypt.compare(credentials.password, user.password);
+        const isValid = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
         if (!isValid) {
-          throw new Error('Invalid password');
+          throw new Error("Invalid password");
         }
 
         return { id: user._id, email: user.email, role: user.role };
-      }
-    })
+      },
+    }),
   ],
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -49,11 +53,11 @@ const authOptions = {
     },
   },
   pages: {
-    signIn: '/admin/login',
-    error: '/admin/login',
+    signIn: "/admin/login",
+    error: "/admin/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
-  debug: process.env.NODE_ENV === 'development',
+  debug: process.env.NODE_ENV === "development",
 };
 
 export default authOptions;
