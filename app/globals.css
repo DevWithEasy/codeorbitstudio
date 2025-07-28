@@ -25,15 +25,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.ProseMirror {
-  min-height: 200px;
-  padding: 0.5rem;
+.prose ol {
+  padding-left: 1.5em;
+  list-style-position: inside;
+  line-height: 1.6;
 }
 
-.ProseMirror:focus {
-  outline: none;
+.prose ol li {
+  margin-bottom: 0.25em;
 }
 
-.ProseMirror p {
-  margin: 0.5rem 0;
+.prose p,
+.prose li {
+  white-space: pre-wrap;
 }
