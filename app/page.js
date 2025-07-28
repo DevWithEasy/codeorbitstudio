@@ -3,15 +3,23 @@ import { getServerSession } from 'next-auth';
 import authOptions from '@/libs/auth';
 
 async function getApps() {
-  const isProduction = process.env.NODE_ENV === 'production';
-  const baseUrl = isProduction 
-    ? 'https://codeorbitstudiobd.vercel.app'
-    : 'http://localhost:3000';
-
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
   const res = await fetch(`${baseUrl}/api/posts`);
-  const data = await res.json();
-  return data.data || [];
+
+  if (!res.ok) {
+    console.error('Failed to fetch posts:', res.status, res.statusText);
+    return [];
+  }
+
+  try {
+    const data = await res.json();
+    return data.data || [];
+  } catch (error) {
+    console.error('Failed to parse JSON:', error);
+    return [];
+  }
 }
+
 
 export default async function Home() {
   const apps = await getApps();
