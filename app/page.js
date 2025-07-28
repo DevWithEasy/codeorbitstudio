@@ -3,7 +3,8 @@ import { getServerSession } from 'next-auth';
 import authOptions from '@/libs/auth';
 
 async function getApps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts`);
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+  const res = await fetch(`${baseUrl}/api/posts`);
   const data = await res.json();
   return data.data || [];
 }
